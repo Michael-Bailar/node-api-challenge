@@ -108,4 +108,3 @@ We have provided test data for all the resources.
 
 repo at https://github.com/Michael-Bailar/node-api-challenge/pull/1
 
-Done except need to make better responses

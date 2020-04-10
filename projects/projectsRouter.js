@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         if (projects.length > 0) {
             res.status(200).json(projects)
         } else {
-            res.status(404).json({ message: "project not found" })
+            res.status(404).json({ message: "projects not found" })
         }
     })
     .catch(error => {
@@ -39,7 +39,9 @@ router.post('/', (req, res) => {
         .then(project => {
             res.status(201).json({project})
         })
-        
+        .catch(error => {
+            res.status(500).json({message: "an error ocurred creating your action"})
+        }) 
     } else {
         res.status(400).json({message: "please input a project name and description"})
     }
@@ -53,11 +55,11 @@ router.put('/:id', (req, res) => {
             if(!project) {
                 res.status(404).json({ message: "project not found" })
             } else {
-                res.status(202).json({message: "project successfuly updated"})
+                res.status(202).json({message: "project successfuly updated", project: project})
             }
         })
         .catch(error => {
-            res.status(500).json({message: "Error occured updating project"})
+            res.status(500).json({ message: "Error occured updating project"})
         })
 })
 
@@ -68,7 +70,7 @@ router.delete('/:id', (req, res) => {
             if (!project) {
                 res.status(404).json({ message: "project not found" })
             } else {
-            res.status(202).json({ message: "1 project successfully deleted" })
+                res.status(202).json({ message: "1 project successfully deleted" })
             }
         })
         .catch(error => {
